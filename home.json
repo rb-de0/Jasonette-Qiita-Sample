@@ -1,0 +1,51 @@
+{
+    "$jason": {
+        "head": {
+            "actions": {
+                "$load": {
+                    "type": "$network.request",
+                    "options": {
+                        "url": "https://qiita.com/api/v2/items?page=1&per_page=20"
+                    },
+                    "success": {
+                        "type": "$render"
+                    }
+                }
+            },
+            "templates": {
+                "body": {
+                    "header": {
+                        "title": "Qiitaアプリ"
+                    },
+                    "sections": [
+                        {
+                            "items": {
+                                "{{#each $jason}}": {
+                                    "type": "horizontal",
+                                    "components": [
+                                        {
+                                            "type": "label",
+                                            "text": "This is row {{title}}"
+                                        },
+                                        {
+                                            "type": "image",
+                                            "url": "{{user.profile_image_url}}",
+                                            "style": {
+                                                "width": "50",
+                                                "height": "50"
+                                            }
+                                        }
+                                    ],
+                                    "href": {
+                                        "url": "{{link}}",
+                                        "view": "web"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
